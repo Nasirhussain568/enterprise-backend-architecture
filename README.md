@@ -13,6 +13,7 @@ The primary objective was to transform disconnected, raw data into actionable, h
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=Prisma&logoColor=white)
 ![Firebird](https://img.shields.io/badge/Firebird-FF0000?style=for-the-badge&logo=Firebird&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -22,6 +23,7 @@ The primary objective was to transform disconnected, raw data into actionable, h
 ## 🏛️ 1. Hybrid Data Engineering (The "Sync Engine")
 I engineered a high-performance synchronization layer to manage the data flow between legacy systems and modern backends.
 
+*   **Dual-Database Cron Synchronization:** Architected a resilient Primary-Secondary database relationship. Implemented automated **Cron Jobs** to periodically ingest, transform, and sync legacy data from the on-premise **Firebird SQL (Secondary)** database directly into **MongoDB (Primary)**, keeping both databases working together seamlessly.
 *   **Idempotent Bulk Sync:** Designed "Check Previous, Update Next" logic. For bulk loads (`Warehouse ID = 0`), the engine performs a heuristic search using a **composite key** (StockCode + LotNo + Warehouse + Expiry) to prevent duplicates.
 *   **Manual Sequence Management:** To ensure audit-ready compliance, I developed a custom `AutoIncrementService` to guarantee sequential, gapless IDs for Variance Reports and Stock Takes.
 *   **Transactional Integrity:** Utilized `Prisma.$transaction` logic to ensure that multi-warehouse loads are atomic—preventing partial or corrupted data during network failures.
