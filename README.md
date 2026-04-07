@@ -41,26 +41,27 @@ Reporting in medical environments requires extreme precision. I leveraged **Exce
     *   🔵 **Gate 2 (Warning):** Automatic Light Blue (#94dcf8) for items expiring within 6 months.
     *   🔴 **Variance Logic:** Visual Red (#ff5050) flagging for stock quantity mismatches.
 
-## ✉️ 3. Communication & Template Engine (Advent One Logic)
-Built a decoupled, responsive notification system using **MJML** and **Handlebars**.
+## ✉️ 3. High-Fidelity Communication Engine (Outlook-Proof Architecture)
+Built a decoupled, professional notification system engineered specifically to overcome the rendering limitations of enterprise mail clients like Microsoft Outlook.
 
-*   **MJML Responsive Architecture:** Templates designed to maintain brand consistency across all mail clients (Outlook, Gmail, Apple Mail).
-*   **Dynamic Data Binding:** Integrated Handlebars to inject live transaction data (Variance Reports) directly into HTML templates.
-*   **User-Centric Audit Trails:** Built a comment aggregation logic that preserves item history: `[User Name] - [YYYY/MM/DD HH:mm] - [Content] |`.
+*   **Outlook "Gray-Scale" Mitigation:** Engineered a custom table-based HTML architecture using inline CSS and explicit `bgcolor` attributes. This ensures that the branding remains high-fidelity and backgrounds stay **100% white (#ffffff)** even when viewed in Outlook’s aggressive Dark Mode.
+*   **Dynamic Template Consolidation:** Refactored a high-complexity architecture (10+ files) into a single, high-performance TypeScript-based **Dynamic Template Engine**. This system uses a flexible "Detail-Array" pattern, allowing the backend to inject an unlimited number of custom fields (Labels/Values) without modifying the underlying HTML.
+*   **Brand-Consistent Typography:** Implemented a specific visual hierarchy using **Pink Header Accents (#ED017F)** and bolded metadata labels to match the platform's clinical UI, ensuring a seamless user experience from the dashboard to the inbox.
 
 ## 🎨 4. Frontend Design Engineering & UI/UX Optimization
 I solved critical UI challenges to ensure a seamless experience for clinical staff across different operating systems.
 
+*   **Visual Hierarchy & Alignment:** Resolved structural layout shifts in the Permissions module. By recalibrating parent container padding and horizontal alignment, I ensured that the **'LABS SETUP'** interface elements align vertically with section headers, creating a balanced and professional white-space distribution.
 *   **Layout Shift Mitigation (macOS):** Solved the "Always Show Scrollbars" layout shift issue on macOS by implementing `scrollbar-gutter: stable`. This prevents the table columns from jumping when the vertical scrollbar takes physical width.
 *   **Ant-Design Table Realignment:** Fixed the "Separate-Table Misalignment" in fixed-header tables (`scroll={{ y: ... }}`). By recalibrating percentage-based widths to 100% and applying `tableLayout="fixed"`, I ensured the header and body columns remain perfectly aligned.
-*   **Interactivity Synchronization:** Orchestrated complex button visibility logic. Synchronized the 'ADD' button and 'Delete' icons to automatically lock/hide when a Variance Report is generated, and reappear during 'Amend Mode', preventing illegal inventory changes.
 
-## ⚙️ 5. Advanced Business Logic
+## ⚙️ 5. Advanced Business Logic & Performance
+*   **Asynchronous Notification Triggers:** Optimized backend performance by moving email dispatch logic **outside of the Prisma Database Transactions**. This prevents "Transaction Timeouts" and ensures that inventory data is saved in milliseconds, while the email service processes in the background.
 *   **GS1-128 Parsing:** Built a custom parser using regex heuristics to extract Barcode, Lot Number, and Expiry Date from a single scanned medical string.
-*   **Data Masking:** Implemented logic gates to treat "Open" status as null in exports to maintain professional documentation for management.
+*   **Dynamic Recipient Resolution:** Integrated the notification system with the `LabSetup` service to automatically resolve and deduplicate recipient lists based on specific laboratory configurations.
 *   **RBAC & Security:** Integrated JWT-passport authentication to ensure every inventory change is cryptographically linked to a specific user.
 
 ---
 
 ## 💡 The Result
-By combining the **Advent One** notification logic with the **Cardiac Output** data sync engine, I delivered a platform that not only manages inventory but actively **predicts risks** and **automates the entire reporting chain** from the warehouse to the executive office.
+By combining the data sync engine with a professional, Outlook-compatible reporting layer, I delivered a platform that not only manages inventory but actively **predicts risks** and **automates the entire reporting chain** from the warehouse to the executive office.
