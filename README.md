@@ -62,6 +62,16 @@ I solved critical UI challenges to ensure a seamless experience for clinical sta
 *   **GS1-128 Parsing:** Built a custom parser using regex heuristics to extract Barcode, Lot Number, and Expiry Date from a single scanned medical string.
 *   **RBAC & Security:** Integrated JWT-passport authentication to ensure every inventory change is cryptographically linked to a specific user.
 
+## ⏱️ 6. Automated Risk Prediction & Compliance (Expiry Alerts)
+Designed a proactive inventory monitoring system that triggers color-coded email alerts for medical products approaching their expiration dates.
+
+*   **Dual-Threshold Architecture:**
+    *   🔵 **180-Day Blue Alert:** Triggers exactly 6 months before expiry for inventory rotation planning.
+    *   🟡 **30-Day Yellow Alert:** Triggers exactly 1 month before expiry indicating urgent consumption or disposal requirements.
+*   **Automated Background Processing:** Configured a daily Cron job (`@nestjs/schedule`) executing at 08:00 AM server-time to scan the entire local MongoDB dataset against current date vectors.
+*   **Dynamic Routing & Filtering:** Engineered logic to identify all active `LabSetup` configurations, map them to specific Warehouse IDs, and dynamically construct recipient lists directly from the Lab configurations, ensuring alerts reach the correct regional managers.
+*   **Decoupled Service Layer:** Created the `StockExpiryNotificationService` to independently handle date math, stock isolation, and payload generation for the Mail module.
+
 ---
 
 ## 💡 The Result
