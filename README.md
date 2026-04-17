@@ -72,5 +72,5 @@ By fusing a **High-Concurrency Connection Pooling** architecture with a **Real-T
 ---
 
 ## 👥 Contributors
-- **Lead Developer**: Saleem Ameen
-- **Manager**: Ghayoor Haider
+- **Lead Developer**: Sir M Saleem 
+- **Manager**: Sir Ghayoor Haider
