@@ -38,8 +38,6 @@ Designed and implemented a high-throughput synchronization layer to orchestrate 
   - Transform it into normalized format
   - Sync it into the cloud database  
 
-  Ensures continuous data consistency across systems.
-
 * **On-Demand Manual Overrides:**  
   Developed secure manual sync triggers with **logic-based guards**, allowing controlled execution of sync operations while preventing conflicts with scheduled jobs.
 
@@ -50,15 +48,13 @@ Designed and implemented a high-throughput synchronization layer to orchestrate 
 Implemented backend-driven reporting pipelines for generating audit-ready documents with strict formatting and business logic.
 
 * **Scientific Notation Mitigation:**  
-  Applied strict Excel formatting (`numFmt: '@'`) to prevent large numeric values (e.g., 16-digit barcodes) from converting into scientific notation.
+  Applied strict Excel formatting (`numFmt: '@'`) to prevent large numeric values (e.g., 16-digit clinical barcodes) from converting into scientific notation.
 
 * **Intelligent Threshold Monitoring Logic:**  
   Integrated business rules directly into report generation:
   - 🟡 **Critical Priority:** Items expiring within 30 days (Yellow: `#ffff99`)
   - 🔵 **High Priority:** Items expiring within 6 months (Light Blue: `#94dcf8`)
   - 🔴 **Variance Detection:** Quantity mismatches flagged in Red (`#ff5050`)
-
-  This transforms raw reports into actionable insights.
 
 ---
 
@@ -67,19 +63,13 @@ Implemented backend-driven reporting pipelines for generating audit-ready docume
 Developed a decoupled email service optimized for compatibility with restrictive email clients like Microsoft Outlook.
 
 * **Outlook Rendering Mitigation:**  
-  Built a table-based HTML structure using inline CSS and `bgcolor` attributes to enforce consistent rendering across email clients.
+  Built a table-based HTML structure using inline CSS and `bgcolor` attributes to enforce consistent rendering and **100% white backgrounds** across desktop clients.
 
 * **CID-Based Media Embedding:**  
-  Replaced Base64 images with **CID attachments** to ensure:
-  - Faster loading
-  - Better security compliance
-  - No blocking by email clients
+  Replaced Base64 images with **CID attachments** to ensure faster loading and prevent security filters from blocking logos as "unsafe."
 
 * **Brand-Consistent Layout:**  
-  Maintained consistent design using:
-  - Header accents (`#ED017F`)
-  - Structured typography
-  - Clear data hierarchy
+  Maintained consistent design using header accents (`#ED017F`) and structured data hierarchy.
 
 ---
 
@@ -88,39 +78,37 @@ Developed a decoupled email service optimized for compatibility with restrictive
 Designed a scalable notification system supporting real-time alerts and persistent state tracking.
 
 * **Persistent Notification States:**  
-  Extended the Prisma schema to support **read/unread states**, ensuring synchronization across sessions and devices.
+  Extended the data schema to support **read/unread states**, ensuring synchronization across sessions and devices.
 
 * **Dynamic Message Construction:**  
-  Implemented logic-driven messaging based on:
-  - Location ID
-  - Category configuration
-  - Severity level  
-
-  This ensures context-aware and meaningful notifications.
+  Implemented logic-driven messaging based on Location ID and severity level to ensure context-aware notifications.
 
 * **Asynchronous Processing:**  
-  Decoupled notification dispatch logic from core transactions using async patterns, maintaining **fast database write performance**.
+  Decoupled notification dispatch logic from core transactions using async patterns, maintaining fast database write performance.
 
 ---
 
-## ⚙️ 5. Advanced Business Logic & Compliance
+## 🛡️ 5. Relational Integrity & Schema Evolution (New)
+
+Architected complex relational logic to handle entity lifecycles while maintaining strict database constraints.
+
+* **Optional Relation Strategy:**  
+  Evolved the schema to use **Optional Relations (`Int?`)** for critical modules (e.g., Departments). This allows for a robust **Soft-Delete workflow**, ensuring that deleting a user or department does not trigger catastrophic cascading failures across the system.
+* **Deletion Constraint Resolution:**  
+  Resolved a critical "Blocker" issue where core entities (e.g., Lab Setups) could not be deleted if they were referenced by user permissions. Engineered a pre-deletion cleanup protocol that programmatically unlinks child references before the parent deletion, ensuring a 100% success rate for administrative cleanup tasks.
+* **Advanced Error Handling:**  
+  Implemented targeted handling for **Foreign Key Violations (P2003)**. Instead of system crashes, the API now provides intelligent `ConflictException` and `NotFoundException` feedback to the user.
+
+---
+
+## ⚙️ 6. Advanced Business Logic & Compliance
 
 * **Dual-Threshold Chronological Processing:**  
   Scheduled daily background jobs (08:00 AM server time) to evaluate records against time-based thresholds.
-
 * **Heuristic GS1-128 Parsing Engine:**  
-  Built a regex-driven parser to accurately extract:
-  - Barcode
-  - Lot Number
-  - Expiry Date  
-
-  from complex GS1-128 encoded strings.
-
+  Built a regex-driven parser to accurately extract Barcodes, Lot Numbers, and Expiry Dates from complex encoded strings.
 * **Resilient Connection Management:**  
-  Implemented retry and failover mechanisms to ensure:
-  - Safe query execution
-  - Proper connection release
-  - Stability during unexpected failures
+  Implemented retry and failover mechanisms to ensure safe connection releases and stability during heavy SQL query execution.
 
 ---
 
@@ -129,11 +117,11 @@ Designed a scalable notification system supporting real-time alerts and persiste
 Delivered an enterprise-grade backend system that ensures:
 - High concurrency performance  
 - Reliable legacy-to-cloud synchronization  
-- Real-time event handling  
+- Seamless relational management and entity deletion
 - 100% data integrity and consistency  
 
 ---
 
 ## 👥 Contributors
 - **Lead Backend Developer**: Sir M Saleem  
-- **Technical Management**: Sir Ghayoor Haider  
+- **Technical Management**: Sir Ghayoor Haider
