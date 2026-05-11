@@ -14,24 +14,24 @@ A high-scale server-side ecosystem designed to bridge **Legacy On-Premise Data**
 ## 🏛️ Core Architectural Pillars
 
 ### 1. Self-Healing Data Synchronization
-*   **Dynamic Lookback Engine:** Automated gap-detection logic that ensures **zero data loss** during server downtime or network instability.
-*   **High-Concurrency Pooling:** Optimized for **10+ simultaneous transactions**, allowing heavy background syncs and real-time API requests to coexist.
-*   **Dual-Table Observability:** Real-time monitoring of both transactional movement and entity metadata to ensure a 100% mirrored cloud database.
+*   **Dynamic Lookback Engine:** Automated gap-detection logic that ensures **zero data loss** during server downtime or network instability by calculating precise sync windows.
+*   **High-Concurrency Pooling:** Optimized for **10+ simultaneous transactions**, allowing heavy background syncs and real-time API requests to coexist seamlessly.
+*   **Dual-Table Observability:** Real-time monitoring of both `STOCKTRANSACTIONS` and `STOCKITEM` metadata to ensure a 100% mirrored cloud database.
 
 ### 2. Complex Relational Integrity
-*   **Multi-Tier Rails Ecosystem:** Architected a 6-tier relational model (Users → Campaigns → Topics) with strict ActiveRecord associations.
+*   **Multi-Tier Rails Ecosystem:** Architected a 6-tier relational model (Users → Campaigns → Topics → Comments → Todos → Tags) with strict ActiveRecord associations.
 *   **Optional Relation Strategy:** Engineered a robust schema supporting **Soft-Deletes** and pre-deletion cleanup protocols to prevent cascading system failures.
-*   **Fault-Tolerant Logic:** Custom error interceptors that transform low-level DB violations into intelligent, user-centric feedback.
+*   **Fault-Tolerant Logic:** Custom NestJS interceptors that transform low-level DB violations into intelligent, user-centric feedback.
 
 ### 3. Enterprise Fidelity & UI Polish
 *   **Audit-Ready Reporting:** Server-side Excel/PDF generation with automated variance detection and clinical expiry alerts (30/180-day thresholds).
-*   **Outlook-Resilient Communication:** Decoupled HTML email engine using **CID embedding** for consistent rendering in restrictive corporate environments.
-*   **Dashboard Optimization:** Implemented smart client-server sorting thresholds for maximum UI performance on large datasets.
+*   **Outlook-Resilient Communication:** Decoupled HTML email engine using **CID embedding** for consistent brand rendering in restrictive corporate environments.
+*   **Dashboard Optimization:** Implemented smart client-server sorting thresholds for maximum UI performance on large datasets (>100 records).
 
 ---
 
 ## 💡 The Result
-A robust, **Production-Ready** infrastructure that transforms fragmented legacy data into a high-integrity business asset.
+A robust, **Production-Ready** infrastructure that transforms fragmented legacy data into a high-integrity, scalable business asset.
 
 ---
 
